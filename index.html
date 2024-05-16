@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game</title>
+    <style>
+        .Btn {
+            padding: 50px;
+            height: 90px;
+            width: 170px;
+            background: #e6e95d;
+            border-radius: 30px;
+            font-size: 30px;
+            font-weight: bolder;
+
+        }
+
+        .Btn:hover {
+            cursor: pointer;
+            background: #c78f03;
+
+
+        }
+
+        body {
+
+            background: rgb(238, 174, 202);
+            background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
+
+        }
+
+        #resets{
+            background: greenyellow;
+            height: 40px;
+            width: 150px;
+            border-radius: 15px;
+            font-size: 15px;
+            font-style: italic;
+            font-family: "Lucida Console", "Courier New", monospace;
+        }
+        #div2{
+           
+            background-color: azure;
+        }
+        #text{
+            font-family:"Lucida Console", "Courier New", monospace ;
+        }
+        .bo {
+            display: flex;
+            justify-content: center;
+        }
+
+        .boom {
+            
+            width: 600px;
+            align-items: center;
+            height: 100px;
+            background-image: url(flabel.jpg);
+            background-size: 600px 100px;
+            background-repeat: no-repeat;
+            background-position: center;
+            /* border: 2px solid black; */
+            border-radius: 15px;
+        }
+    </style>
+</head>
+
+<body align="center" onload="sound()">
+
+    <!-- <audio autoplay loop>
+        <source src="audio.m4a" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio> -->
+    <div class="bo">
+        <div class="boom">
+        </div>
+    </div>
+    <div id="div2" >
+        <h1 id="text">click on cards to disclose your faith</h1>
+    </div>
+    <br><br>
+    <button id="1" class="Btn" onclick="clicks(1)"> ?</button>
+    <button id="2" class="Btn" onclick="clicks(2)"> ?</button>
+    <button id="3" class="Btn" onclick="clicks(3)"> ?</button>
+    <br>
+    <br>
+    <button id="4" class="Btn" onclick="clicks(4)"> ?</button>
+    <button id="5" class="Btn" onclick="clicks(5)"> ?</button>
+    <button id="6" class="Btn" onclick="clicks(6)"> ?</button>
+    <br><br>
+    <button type="" id="resets" onclick="Reloads()">Play Again</button>
+
+    <script>
+
+        function sound() {
+            var audio = new Audio('sound.mp3');
+            audio.autoplay = true;
+            audio.loop = true;
+        }
+        var rand = Math.random() * (7 - 1) + 1;
+        function clicks(id) {
+            if (Math.floor(rand) == id) {
+                var element = document.getElementById(id);
+                element.style.backgroundImage = "url('bg1.png')";
+                element.style.backgroundSize = "contain";
+                element.style.backgroundRepeat = "no-repeat";
+                element.style.backgroundColor = "rgba(254, 0, 0, 0.536)"
+                element.innerHTML = "‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ "
+
+                console.log(id + " unsafe");
+                boomSound();
+
+            }
+            else {
+                var element = document.getElementById(id);
+                // element.style.backgroundColor = "blue";
+                element.innerHTML = "‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ "
+                console.log("safe");
+                element.style.backgroundImage = "url('https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExamJlanUxOWV3b3FweDdhazVvMTBpdnIxcW9xdG1lMGpjY3h0ODE0ZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/TwXLDHoI3yFtMcoRxD/giphy.gif')";
+                element.style.backgroundSize = "cover";
+
+                element.style.backgroundRepeat = "no-repeat";
+            }
+
+        }
+        function Reloads() {
+            window.location.reload();
+
+        }
+
+        function boomSound()
+        {
+            var audioBoom = new Audio('boom.mp3');
+            audioBoom.autoplay = true;
+        }
+    </script>
+</body>
+
+</html>
