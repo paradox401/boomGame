@@ -14,24 +14,19 @@
             border-radius: 30px;
             font-size: 30px;
             font-weight: bolder;
-
         }
 
         .Btn:hover {
             cursor: pointer;
             background: #c78f03;
-
-
         }
 
         body {
-
             background: rgb(238, 174, 202);
             background: radial-gradient(circle, rgba(238, 174, 202, 1) 0%, rgba(148, 187, 233, 1) 100%);
-
         }
 
-        #resets{
+        #resets {
             background: greenyellow;
             height: 40px;
             width: 150px;
@@ -40,20 +35,21 @@
             font-style: italic;
             font-family: "Lucida Console", "Courier New", monospace;
         }
-        #div2{
-           
+
+        #div2 {
             background-color: azure;
         }
-        #text{
-            font-family:"Lucida Console", "Courier New", monospace ;
+
+        #text {
+            font-family: "Lucida Console", "Courier New", monospace;
         }
+
         .bo {
             display: flex;
             justify-content: center;
         }
 
         .boom {
-            
             width: 600px;
             align-items: center;
             height: 100px;
@@ -61,7 +57,6 @@
             background-size: 600px 100px;
             background-repeat: no-repeat;
             background-position: center;
-            /* border: 2px solid black; */
             border-radius: 15px;
         }
     </style>
@@ -77,7 +72,7 @@
         <div class="boom">
         </div>
     </div>
-    <div id="div2" >
+    <div id="div2">
         <h1 id="text">click on cards to disclose your faith</h1>
     </div>
     <br><br>
@@ -93,14 +88,15 @@
     <button type="" id="resets" onclick="Reloads()">Play Again</button>
 
     <script>
-
         function sound() {
             var audio = new Audio('sound.mp3');
             audio.autoplay = true;
             audio.loop = true;
             audio.volume = 0.3;
         }
+
         var rand = Math.random() * (7 - 1) + 1;
+
         function clicks(id) {
             if (Math.floor(rand) == id) {
                 var element = document.getElementById(id);
@@ -113,34 +109,30 @@
                 console.log(id + " unsafe");
                 boomSound();
 
-            }
-            else {
+            } else {
                 var element = document.getElementById(id);
-                // element.style.backgroundColor = "blue";
                 element.innerHTML = "‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ "
                 console.log("safe");
-                element.style.backgroundImage = "url('https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExamJlanUxOWV3b3FweDdhazVvMTBpdnIxcW9xdG1lMGpjY3h0ODE0ZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/TwXLDHoI3yFtMcoRxD/giphy.gif')";
+                element.style.backgroundImage = "url('https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExamJlanUxOWV3b3FweDdhazVvMTBpdnIxcW9xdG1lMGpjY3h0ODE0ZiZlcD12MV9pbnRlcm5naWZfYnlfaWQmY3Q9Zw/TwXLDHoI3yFtMcoRxD/giphy.gif')";
                 element.style.backgroundSize = "cover";
-
                 element.style.backgroundRepeat = "no-repeat";
-                happy();
+                happy('happy.mp3', 2200);
             }
-
         }
+
         function Reloads() {
             window.location.reload();
-
         }
 
-        function boomSound()
-        {
+        function boomSound() {
             var audioBoom = new Audio('boom.mp3');
             audioBoom.autoplay = true;
         }
-        function happy()
-        {
-            var audioHappy = new Audio('happy.mp3');
+
+        function happy(audio_path, time_in_milisec) {
+            var audioHappy = new Audio(audio_path);
             audioHappy.autoplay = true;
+            setTimeout(() => { audioHappy.pause(); }, time_in_milisec);
         }
     </script>
 </body>
