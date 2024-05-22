@@ -62,15 +62,10 @@
     </style>
 </head>
 
-<body align="center" onload="sound()">
+<body align="center">
 
-    <!-- <audio autoplay loop>
-        <source src="audio.m4a" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio> -->
     <div class="bo">
-        <div class="boom">
-        </div>
+        <div class="boom"></div>
     </div>
     <div id="div2">
         <h1 id="text">click on cards to disclose your faith</h1>
@@ -88,17 +83,18 @@
     <button type="" id="resets" onclick="Reloads()">Play Again</button>
 
     <script>
-        function sound() {
-            var audio = new Audio('sound.mp3');
-            audio.autoplay = true;
-            audio.loop = true;
-            audio.volume = 0.3;
+        function playSound(src) {
+            var audio = new Audio(src);
+            audio.play().catch(error => {
+                console.error('Error playing audio:', error);
+            });
+            return audio;
         }
 
-        var rand = Math.random() * (7 - 1) + 1;
+        var rand = Math.floor(Math.random() * 6) + 1;
 
         function clicks(id) {
-            if (Math.floor(rand) == id) {
+            if (rand == id) {
                 var element = document.getElementById(id);
                 element.style.backgroundImage = "url('bg1.png')";
                 element.style.backgroundSize = "contain";
@@ -107,7 +103,7 @@
                 element.innerHTML = "‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ ‎ "
 
                 console.log(id + " unsafe");
-                boomSound();
+                playSound('boom.mp3');
 
             } else {
                 var element = document.getElementById(id);
@@ -116,23 +112,13 @@
                 element.style.backgroundImage = "url('https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExamJlanUxOWV3b3FweDdhazVvMTBpdnIxcW9xdG1lMGpjY3h0ODE0ZiZlcD12MV9pbnRlcm5naWZfYnlfaWQmY3Q9Zw/TwXLDHoI3yFtMcoRxD/giphy.gif')";
                 element.style.backgroundSize = "cover";
                 element.style.backgroundRepeat = "no-repeat";
-                happy('happy.mp3', 2200);
+                var audio = playSound('happy.mp3');
+                setTimeout(() => { audio.pause(); }, 3000);
             }
         }
 
         function Reloads() {
             window.location.reload();
-        }
-
-        function boomSound() {
-            var audioBoom = new Audio('boom.mp3');
-            audioBoom.autoplay = true;
-        }
-
-        function happy(audio_path, time_in_milisec) {
-            var audioHappy = new Audio(audio_path);
-            audioHappy.autoplay = true;
-            setTimeout(() => { audioHappy.pause(); }, time_in_milisec);
         }
     </script>
 </body>
